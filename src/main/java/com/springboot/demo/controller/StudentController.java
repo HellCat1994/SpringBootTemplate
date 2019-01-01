@@ -1,14 +1,15 @@
 package com.springboot.demo.controller;
-
 import com.github.pagehelper.PageInfo;
 import com.springboot.demo.pojo.Student;
 import com.springboot.demo.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
-
 /**
  * @author Administrator
  */
