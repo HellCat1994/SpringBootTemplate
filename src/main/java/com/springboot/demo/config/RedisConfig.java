@@ -16,22 +16,20 @@ import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.RedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
-
 import java.time.Duration;
-
 /**
- * @Auther: hugeo.wang
+ * @author Administrator
+ * @Auther:
  * @Date: 2018/7/11 11:07
  * @Description:
  */
-
 @Configuration
 @EnableCaching
 public class RedisConfig extends CachingConfigurerSupport {
-
     @Bean
     public CacheManager cacheManager(RedisConnectionFactory factory) {
         RedisCacheConfiguration config = RedisCacheConfiguration.defaultCacheConfig()
+                //设置缓存时间
                 .entryTtl(Duration.ofSeconds(60))
                 .disableCachingNullValues();
 
@@ -45,9 +43,11 @@ public class RedisConfig extends CachingConfigurerSupport {
     public RedisTemplate redisTemplate(RedisConnectionFactory factory) {
         StringRedisTemplate template = new StringRedisTemplate(factory);
 
-        RedisSerializer keySerializer = new StringRedisSerializer(); // 设置key序列化类，否则key前面会多了一些乱码
+        // 设置key序列化类，否则key前面会多了一些乱码
+        RedisSerializer keySerializer = new StringRedisSerializer();
         template.setKeySerializer(keySerializer);
-        setValueSerializer(template);//设置value序列化
+        //设置value序列化
+        setValueSerializer(template);
         template.afterPropertiesSet();
         template.setEnableTransactionSupport(true);
         return template;

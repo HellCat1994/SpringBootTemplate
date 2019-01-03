@@ -6,9 +6,11 @@ import org.springframework.cache.annotation.Cacheable;
 
 import java.util.List;
 
-@CacheConfig(cacheNames = "product")
+/**
+ * @author whg
+ */
 public interface StudentMapper {
-    @Cacheable
     Student getStudentInformationById(int id);
+
     List<Student> getStudentsByName(String name);
 }
